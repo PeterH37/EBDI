@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Average household income</title><script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script><style>body{margin:0;font-family:Arial,sans-serif;background:#fff;color:#586a7d}.header{padding:32px 38px 0}h1{font-size:32px;line-height:1.2;margin:0 0 10px;color:#0b3475}p{font-size:18px;margin:0}#chart{width:100%;height:min(660px,80vh);min-height:440px}@media(max-width:650px){.header{padding:24px 20px 0}h1{font-size:25px}p{font-size:15px}}</style></head><body><div class="header"><h1>Average household income</h1><p>Aggregate household income / households</p></div><div id="chart"></div><script>
+const periods=['2005–2009','2010–2014','2015–2019','2020–2024'];
+const series=[
+{name:'EBDI',x:periods,y:[27655.338078291814,25437.86078098472,43964.27469135803,63069.55950032873],marker:{color:'#0b3475'}},
+{name:'Baltimore City, Black households',x:periods,y:[42000,45000,55000,67000],marker:{color:'#69ade1'}},
+{name:'Baltimore City, all households',x:periods,y:[54000,59000,72000,87000],marker:{color:'#008e7d'}}
+].map(s=>({...s,type:'bar',text:s.y.map(v=>'$'+Math.round(v/1000)+'k'),textposition:'outside',textfont:{color:'#586a7d',size:15},hovertemplate:'%{x}<br>'+s.name+': $%{y:,.0f}<extra></extra>'}));
+Plotly.newPlot('chart',series,{barmode:'group',bargap:0.25,margin:{l:85,r:30,t:125,b:75},paper_bgcolor:'white',plot_bgcolor:'white',font:{family:'Arial',color:'#586a7d',size:14},legend:{orientation:'h',x:0.04,y:1.12,xanchor:'left',yanchor:'bottom',font:{size:14},itemwidth:35},xaxis:{showgrid:false,showline:true,linecolor:'#a0adba',tickfont:{size:15}},yaxis:{range:[0,105000],tickprefix:'$',tickformat:'~s',gridcolor:'#dedede',zeroline:false}}, {responsive:true,displaylogo:false,toImageButtonOptions:{format:'png',filename:'ebdi_average_household_income',scale:2}});
+</script></body></html>

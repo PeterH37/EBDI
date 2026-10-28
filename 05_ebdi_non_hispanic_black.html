@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Non hispanic or Latino Black or African American</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  *{box-sizing:border-box} body{margin:0;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#596b80}
+  .wrap{width:100%;max-width:1150px;margin:0 auto;padding:26px 22px 12px}
+  h1{font-size:clamp(21px,3vw,34px);color:#0a3475;line-height:1.2;margin:0 0 8px;font-weight:750}
+  #chart{width:100%;height:min(75vh,710px);min-height:420px}
+  .note{font-size:12px;color:#6b7280;margin:0 0 10px}
+</style>
+</head>
+<body><main class="wrap"><h1>Non hispanic or Latino Black or African American</h1><div id="chart" role="img" aria-label="Grouped bars showing EBDI and Baltimore City non-Hispanic Black population share in four ACS periods"></div></main>
+<script>
+const periods=['2005–2009','2010–2014','2015–2019','2020–2024'];
+// EBDI proportions transcribed from the supplied table, converted to percent.
+const ebdi=[0.8903896103896104,0.9095662872962166,0.8893875395987328,0.7356959863364646].map(v=>v*100);
+// Baltimore City percentages are the values displayed in the supplied reference chart.
+const city=[63,63,62,59];
+const trace=(name,values,color)=>({type:'bar',name,x:periods,y:values,marker:{color},text:values.map(v=>Math.round(v)+'%'),textposition:'outside',textfont:{size:17,color:'#596b80'},cliponaxis:false,hovertemplate:'%{x}<br>'+name+': %{y:.1f}%<extra></extra>'});
+const layout={barmode:'group',bargap:0.24,bargroupgap:0.06,margin:{l:75,r:20,t:100,b:80},paper_bgcolor:'#fff',plot_bgcolor:'#fff',font:{family:'Arial, sans-serif',color:'#596b80',size:16},legend:{orientation:'h',x:0.02,y:1.13,xanchor:'left',yanchor:'bottom',font:{size:17,color:'#333'}},yaxis:{range:[0,105],tickvals:[0,20,40,60,80,100],ticksuffix:'%',gridcolor:'#d9d9d9',zeroline:false,fixedrange:false},xaxis:{showgrid:false,showline:true,linecolor:'#9aa8b6',tickfont:{size:16}},hovermode:'closest',showlegend:true};
+const config={responsive:true,displaylogo:false,toImageButtonOptions:{format:'png',filename:'ebdi_non_hispanic_black_share',scale:2}};
+Plotly.newPlot('chart',[trace('EBDI',ebdi,'#0b3678'),trace('Baltimore City',city,'#69aee0')],layout,config);
+</script></body></html>
