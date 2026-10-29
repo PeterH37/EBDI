@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Poverty rate, Black residents of EBDI</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  html,body{margin:0;background:white;font-family:Arial,Helvetica,sans-serif;}
+  .wrapper{max-width:1150px;margin:auto;padding:24px 22px 8px;}
+  h1{color:#0b3273;font-size:clamp(23px,3.3vw,41px);font-weight:700;margin:0 0 15px;}
+  .subtitle{color:#586a7e;font-size:clamp(16px,2.1vw,25px);margin:0;}
+  #chart{height:690px;width:100%;}
+  @media(max-width:650px){#chart{height:490px}.wrapper{padding:18px 12px}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<h1>Poverty rate, Black residents of EBDI</h1>
+<p class="subtitle">Share with income in the past 12 months below the poverty level</p>
+<div id="chart"></div>
+</div>
+<script>
+const years=['2009','2014','2019','2024'];
+const values=[43,41,27,26];
+const trace={type:'bar',x:years,y:values,marker:{color:'#0b3273'},width:0.8,
+ text:values.map(v=>v+'%'),textposition:'outside',textfont:{size:22,color:'#586a7e'},
+ hovertemplate:'%{x}<br>Poverty rate: %{y}%<extra></extra>',cliponaxis:false};
+const layout={paper_bgcolor:'white',plot_bgcolor:'white',margin:{l:92,r:35,t:135,b:70},
+ showlegend:false,bargap:0.2,
+ xaxis:{type:'category',categoryorder:'array',categoryarray:years,tickfont:{size:21,color:'#586a7e'},showline:true,linecolor:'#9aa6b2',linewidth:2,showgrid:false,zeroline:false,fixedrange:false},
+ yaxis:{range:[0,55],tickvals:[0,10,20,30,40,50],ticktext:['0%','10%','20%','30%','40%','50%'],tickfont:{size:20,color:'#586a7e'},gridcolor:'#d5d5d5',gridwidth:1,zeroline:false,fixedrange:false},
+ font:{family:'Arial, Helvetica, sans-serif'}};
+Plotly.newPlot('chart',[trace],layout,{responsive:true,displaylogo:false,toImageButtonOptions:{format:'png',filename:'EBDI_Black_Poverty_Rate'}});
+</script>
+</body>
+</html>
